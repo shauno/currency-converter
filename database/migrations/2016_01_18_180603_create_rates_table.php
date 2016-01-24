@@ -13,10 +13,11 @@ class CreateRatesTable extends Migration
     public function up()
     {
         Schema::create('rates', function (Blueprint $table) {
+            $table->increments('id'); //I considered a composite primary key instead, but Eloquent ORM doesn't seem to support it
             $table->string('from');
             $table->string('to');
             $table->double('rate');
-            $table->primary(['from', 'to']);
+            $table->text('notification_list');
             $table->timestamps();
         });
     }

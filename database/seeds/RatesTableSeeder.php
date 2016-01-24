@@ -17,24 +17,28 @@ class RatesTableSeeder extends Seeder
             'from' => 'USD',
             'to' => 'ZAR',
             'rate' => 13.3054,
+            'notification_list' => '',
         ]);
 
         DB::table('rates')->insert([
             'from' => 'USD',
             'to' => 'GBP',
             'rate' => 0.651178,
+            'notification_list' => 'shaunalberts@gmail.com',
         ]);
 
         DB::table('rates')->insert([
             'from' => 'USD',
             'to' => 'EUR',
             'rate' => 0.884872,
+            'notification_list' => '',
         ]);
 
         DB::table('rates')->insert([
             'from' => 'USD',
             'to' => 'KES',
             'rate' => 103.860,
+            'notification_list' => '',
         ]);
 
     }

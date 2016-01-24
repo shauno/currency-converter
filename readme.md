@@ -23,6 +23,10 @@ Setup
         $ php artisan migrate
         $ php artisan db:seed
 
+    The database seeding will setup the default currencies with default values. To get the updated currency rates from the online provider, you can run the following command at any time. Set it up on a cron if you would like the rates to be updated on a schedule :)
+
+        $ php artisan rates:update
+
 * Download and install all build tool dependencies (you need Node/NPM installed, which is outside the scope of this document)
 
         $ npm install
