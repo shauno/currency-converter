@@ -56,7 +56,6 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        //TODO, create custom validation rule and use laravel validation instead
         if(!$request->has('amount_from_usd') && !$request->has('amount_to_usd')) {
             return response(new MessageBag([
                 'generic' => ['Either "amount_to_usd" or "amount_from_usd" needs to be sent']
