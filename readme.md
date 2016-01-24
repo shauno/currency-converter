@@ -15,6 +15,8 @@ Setup
         $ cp .env.example .env
 
     The `JSON_RATE_API_KEY` can be obtained with a free account from https://currencylayer.com.
+    
+    I have used a free http://mailgun.com account for email sending, but you can configure emails using Laravels built in configuration as you require
 
     Please note, the `APP_KEY` can be set to a secure random value by running the `$ php artisan key:generate` command
 
