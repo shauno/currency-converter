@@ -31,7 +31,7 @@ class GbpOrderRepository extends OrderRepository implements OrderRepositoryInter
                 'total' => $this->order->amount_total,
 
             ],
-            function($message) {
+            function ($message) {
                 $message->from(env('ORDER_NOTIFICATION_FROM'));
                 $message->to(env('ORDER_NOTIFICATION_TO'));
                 $message->subject('Order notification');

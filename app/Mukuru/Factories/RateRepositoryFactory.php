@@ -10,9 +10,9 @@ class RateRepositoryFactory
     {
         $class = '\\Mukuru\\Repositories\\'.ucfirst(strtolower($currency)).'RateRepository';
 
-        if(class_exists($class)) {
+        if (class_exists($class)) {
             return new $class(new Rate(), $currency);
-        }else{
+        } else {
             return false;
         }
     }

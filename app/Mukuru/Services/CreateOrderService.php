@@ -12,7 +12,7 @@ class CreateOrderService
     use ErrorTrait;
 
     public function createFromUsd(OrderRepositoryInterface $orderRepo, RateRepositoryInterface $rateRepo, $amount,
-                                  $dryRun=true)
+                                  $dryRun = true)
     {
         $buy = $rateRepo->rate->rate * $amount;
 
@@ -20,7 +20,7 @@ class CreateOrderService
     }
 
     public function createToUsd(OrderRepositoryInterface $orderRepo, RateRepositoryInterface $rateRepo, $amount,
-                                $dryRun=true)
+                                $dryRun = true)
     {
         $pay = $amount / $rateRepo->rate->rate;
 
@@ -28,7 +28,7 @@ class CreateOrderService
     }
 
     protected function buildOrder(OrderRepositoryInterface $orderRepo, RateRepositoryInterface $rateRepo, $paid,
-                                  $bought, $dryRun=true)
+                                  $bought, $dryRun = true)
     {
         //As far as I am aware, you should round totals before performing discounts/surcharges etc? But I stand to be corrected here
         $paid = round($paid, 2);
@@ -47,13 +47,14 @@ class CreateOrderService
             'amount_total' => $paid + $surcharge - $discount,
         ]);
 
-        if(!$dryRun) {
-            if($orderRepo->save()) {
+        if (!$dryRun) {
+            if ($orderRepo->save()) {
                 $orderRepo->postSave();
-            }else{
+            } else {
                 $this->setErrors(new MessageBag([
-                    'generic' => ['There was a problem saving the order']
+                    'generic' => ['There was a problem saving the order'],
                 ]));
+
                 return false;
             }
         }

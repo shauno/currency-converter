@@ -3,8 +3,6 @@
 namespace Mukuru\Controllers;
 
 use Illuminate\Http\Request;
-
-use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\MessageBag;
 use Mukuru\Factories\OrderRepositoryFactory;
@@ -13,7 +11,6 @@ use Mukuru\Services\CreateOrderService;
 
 class OrderController extends Controller
 {
-
     protected $createOrder;
 
     protected $orderRepoFactory;
@@ -51,38 +48,37 @@ class OrderController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        if(!$request->has('amount_from_usd') && !$request->has('amount_to_usd')) {
+        if (!$request->has('amount_from_usd') && !$request->has('amount_to_usd')) {
             return response(new MessageBag([
-                'generic' => ['Either "amount_to_usd" or "amount_from_usd" needs to be sent']
+                'generic' => ['Either "amount_to_usd" or "amount_from_usd" needs to be sent'],
             ]), 400);
         }
 
         $rateRepo = $this->rateRepoFactory->create($request->get('currency'));
 
-        if(!$rateRepo) {
+        if (!$rateRepo) {
             return response(new MessageBag([
-                'generic' => ['Please provide a valid currency to convert']
+                'generic' => ['Please provide a valid currency to convert'],
             ]), 400);
         }
 
         $orderRepo = $this->orderRepoFactory->create($request->get('currency'));
 
-        if($request->has('amount_to_usd')) {
+        if ($request->has('amount_to_usd')) {
             $order = $this->createOrder->createToUsd($orderRepo, $rateRepo, $request->get('amount_to_usd'),
                 $request->get('dry_run'));
-
-        }else if($request->has('amount_from_usd')) {
+        } elseif ($request->has('amount_from_usd')) {
             $order = $this->createOrder->createFromUsd($orderRepo, $rateRepo, $request->get('amount_from_usd'),
                 $request->get('dry_run'));
-
         }
 
-        if($order) {
+        if ($order) {
             return $order;
         }
 
@@ -92,7 +88,8 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
@@ -103,7 +100,8 @@ class OrderController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -114,8 +112,9 @@ class OrderController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -126,7 +125,8 @@ class OrderController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)

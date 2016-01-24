@@ -10,5 +10,4 @@ class KesRateRepository extends RateRepository implements RateRepositoryInterfac
     {
         return $usd * 0.025;
     }
-
 }

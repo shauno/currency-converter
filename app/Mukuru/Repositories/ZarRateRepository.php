@@ -10,5 +10,4 @@ class ZarRateRepository extends RateRepository implements RateRepositoryInterfac
     {
         return $usd * 0.075;
     }
-
 }

@@ -2,7 +2,8 @@
 
 namespace Mukuru\Interfaces;
 
-interface OrderRepositoryInterface {
+interface OrderRepositoryInterface
+{
     public function save();
 
     public function postSave();

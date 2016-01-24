@@ -26,21 +26,20 @@ class UpdateRatesService
 
         $data = json_decode($rates->getBody()->getContents());
 
-        if($rates->getStatusCode() === 200 && $data->success === true) {
+        if ($rates->getStatusCode() === 200 && $data->success === true) {
             //Loop through all returned rates
-            foreach($data->quotes as $currency => $rate) {
+            foreach ($data->quotes as $currency => $rate) {
                 // get rate row for each quote (TODO, consider auto creating new rates here, allowing new rates to be added dynamically?)
                 $rateModel = $this->rate->where('from', '=', 'USD')->where('to', '=', substr($currency, 3))->first();
 
-                if($rateModel) {
+                if ($rateModel) {
                     $rateModel->rate = $rate;
                     $rateModel->save();
                 }
             }
-
-        }else{
+        } else {
             $this->setErrors(new MessageBag([
-                $data->error->code => [$data->error->info]
+                $data->error->code => [$data->error->info],
             ]));
 
             return false;

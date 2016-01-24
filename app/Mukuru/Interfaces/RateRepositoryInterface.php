@@ -2,7 +2,7 @@
 
 namespace Mukuru\Interfaces;
 
-interface RateRepositoryInterface {
+interface RateRepositoryInterface
+{
     public function getSurcharge($usd);
-
 }

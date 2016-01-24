@@ -10,6 +10,6 @@ abstract class RateRepository
 
     public function __construct(Rate $rate, $abbr)
     {
-        $this->rate = $rate->where('to', '=', $abbr)->first();;
+        $this->rate = $rate->where('to', '=', $abbr)->first();
     }
 }

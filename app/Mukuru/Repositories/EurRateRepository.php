@@ -10,5 +10,4 @@ class EurRateRepository extends RateRepository implements RateRepositoryInterfac
     {
         return 0.05 * $usd;
     }
-
 }

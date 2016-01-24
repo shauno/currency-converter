@@ -17,5 +17,4 @@ abstract class OrderRepository
     {
         return $this->order->save();
     }
-
 }

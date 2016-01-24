@@ -10,7 +10,6 @@ trait ErrorTrait
 
     /**
      * @param \Illuminate\Support\MessageBag $errors
-     * @return void
      */
     protected function setErrors(MessageBag $errors)
     {
