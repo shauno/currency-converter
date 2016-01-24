@@ -8,6 +8,6 @@ class ZarOrderRepository extends OrderRepository implements OrderRepositoryInter
 {
     public function postSave()
     {
-        return;
+        return true;
     }
 }
