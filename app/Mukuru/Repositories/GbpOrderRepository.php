@@ -19,7 +19,7 @@ class GbpOrderRepository extends OrderRepository implements OrderRepositoryInter
 
     public function postSave()
     {
-        $this->mailer->send(
+        $sent = $this->mailer->send(
             'emails.order-notification',
             [
                 'id' => $this->order->id,
@@ -38,6 +38,11 @@ class GbpOrderRepository extends OrderRepository implements OrderRepositoryInter
             }
         );
 
-        return true;
+        if($sent->getStatusCode() === 200) {
+            return true;
+        }
+
+        return false;
+
     }
 }
