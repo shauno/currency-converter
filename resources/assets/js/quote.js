@@ -12,6 +12,18 @@ jQuery(document).ready(function() {
             delete quoteData.amount_to_usd;
         }
 
+        if(quoteData.hasOwnProperty('amount_from_usd')) {
+            if(quoteData.amount_from_usd != parseFloat(quoteData.amount_from_usd)) {
+                alert('Please enter a valid amount');
+                return false;
+            }
+        }else if(quoteData.hasOwnProperty('amount_to_usd')) {
+            if(quoteData.amount_to_usd != parseFloat(quoteData.amount_to_usd)) {
+                alert('Please enter a valid amount');
+                return false;
+            }
+        }
+
         quoteData.currency = encodeURIComponent(jQuery(this).find('.currency').val());
         quoteData.dry_run = 1;
 
