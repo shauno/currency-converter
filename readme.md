@@ -32,6 +32,8 @@ Setup
 * Download and install all build tool dependencies (you need Node/NPM installed, which is outside the scope of this document)
 
         $ npm install
+        
+    (You might want to make a cup of coffee while this runs. Laravel's Elixir is quite large)
 
 * Download and install front end dependencies
 
