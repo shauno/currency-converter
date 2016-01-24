@@ -19,12 +19,24 @@ class GbpOrderRepository extends OrderRepository implements OrderRepositoryInter
 
     public function postSave()
     {
-        $this->mailer->send('emails.order-notification', [], function($message) {
-            $message->from(env('ORDER_NOTIFICATION_FROM'));
-            $message->to(env('ORDER_NOTIFICATION_TO'));
-            $message->subject('Order notification');
+        $this->mailer->send(
+            'emails.order-notification',
+            [
+                'id' => $this->order->id,
+                'currency' => $this->order->currency_to,
+                'bought' => $this->order->amount_bought,
+                'paid' => $this->order->amount_paid,
+                'surcharge' => $this->order->amount_surcharge,
+                'discount' => $this->order->amount_discount,
+                'total' => $this->order->amount_total,
 
-        });
+            ],
+            function($message) {
+                $message->from(env('ORDER_NOTIFICATION_FROM'));
+                $message->to(env('ORDER_NOTIFICATION_TO'));
+                $message->subject('Order notification');
+            }
+        );
 
         return true;
     }
