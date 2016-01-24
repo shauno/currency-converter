@@ -77,7 +77,7 @@
 
                 <tr>
                     <td colspan="4" align="right">
-                        <button type="button" class="btn btn-primary" id="quote-order">Order</button>
+                        <button type="button" class="btn btn-primary" id="quote-order">Purchase</button>
                         <span id="quote-message" style="display: none;"></span>
                     </td>
                 </tr>

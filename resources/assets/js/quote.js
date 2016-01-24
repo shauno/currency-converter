@@ -62,7 +62,7 @@ jQuery(document).ready(function() {
             dataType: 'json',
             data: jQuery.param(quoteData),
             success: function(data) {
-                jQuery('#quote-order').text('Order');
+                jQuery('#quote-order').text('Purchase');
                 jQuery('#quote-order').hide();
 
                 jQuery('#quote-message').show();
